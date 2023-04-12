@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Users</title>
+</head>
+<body>
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Lastname</th>
+    <th>Age</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="user : ${users}">
+    <td th:text="${user.getId()}"></td>
+    <td th:text="${user.getUsername()}"></td>
+    <td th:text="${user.getLastname()}"></td>
+    <td th:text="${user.getAge()}"></td>
+    <td th:text="${user.getEmail()}"></td>
+    <td th:text="${user.getRoleList()}"></td>
+    <td><a th:href ="@{admin/user-delete/{id}(id=${user.id})}">
+      <input type="submit" value="Delete">
+    </a></td>
+    <td>
+      <a th:href="@{/admin/{id}/getUser (id = ${user.getId()})}">
+        <input type="button" value="Edit"/>
+      </a>
+
+    </td>
+  </tr>
+  </tbody>
+</table>
+<br>
+<form action="/logout">
+  <button type="submit">Logout</button>
+</form>
+<br>
+</body>
+
+<form action="/admin/NewUser">
+  <button type="submit">AddUser</button>
+</form>
+<br>
+<form action="/admin/NewAdmimUser">
+  <button type="submit">AddAdmin</button>
+</form>
+</html>
